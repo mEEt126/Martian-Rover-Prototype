@@ -1,0 +1,163 @@
+#include <EEPROM.h>
+#include <cactus_io_AM2302.h>
+#include "Wire.h"    // imports the wire library for talking over I2C 
+#include "Adafruit_BMP085.h"  // import the Pressure Sensor Library
+#include "HX711.h"
+#define AM2302_PIN 4
+#define DOUT  3
+#define CLK  2
+ 
+HX711 scale(DOUT, CLK);
+ float calibration_factor = -736504.18;
+Adafruit_BMP085 mySensor;  // create sensor object called mySensor
+int airquality = 0;
+float tempC;  // Variable for holding temp in C
+float tempF;  // Variable for holding temp in F
+float pressure; //Variable for holding pressure reading
+int address = 0;
+byte vala;
+byte valb;
+byte valc;
+byte vald;
+byte vale;
+byte valf;
+int Sensor_pin ;
+
+
+int sensorValue=0;
+long int Output_data;
+int inByte;
+AM2302 dht(AM2302_PIN);
+
+void setup()
+{
+  Serial.begin(9600);
+  dht.begin();
+  mySensor.begin();   //initialize mySensor
+  int sensorValue = 0;
+  /*Serial.println("Press T to tare");*/
+  scale.set_scale(-736504.18);  //Calibration Factor obtained from first sketch
+  scale.tare();
+}
+
+float temp_pressure()
+{
+  tempC = mySensor.readTemperature(); //  Read Temperature
+  pressure =mySensor.readPressure(); //Read Pressure
+  /*return (tempC);*/
+  EEPROM.write(0x31,tempC);
+  EEPROM.write(0x41,pressure);
+  //Serial.println(tempC);
+ //Serial.println(pressure);
+  transferData();
+}
+int soil_moisture()
+{
+ float M = analogRead(Sensor_pin);
+ 
+  M = map(M,550,10,0,100);
+  EEPROM.write(0x51,M);
+  //Serial.println(M);
+  transferData();
+ 
+}
+
+int humidity_sens(){
+  dht.readHumidity();
+  // Check if any reads failed and exit early (to try again).
+  if (isnan(dht.humidity)) {
+    
+  Serial.println("AM2302 sensor read failure!");
+  return;
+  }
+  
+  float H = dht.humidity; 
+  EEPROM.write(0x61,H);
+  //return (H);
+  transferData();
+  
+}
+void load_sens()
+{
+  Serial.println("Press T to tare");
+ int  W = (scale.get_units(), 3);
+   if(Serial.available())
+  {
+    char temp = Serial.read();
+    if(temp == 't' || temp == 'T')
+      scale.tare();  //Reset the scale to zero      
+  }
+  EEPROM.write(0x71,scale.get_units());
+  //Serial.print(scale.get_units(), 3);
+  transferData();
+}
+int gas_sens()
+{
+  
+ int sensorValue = analogRead(A1);
+ EEPROM.write(0x81,sensorValue);
+// Serial.println(transferData());
+transferData();
+}
+long int transferData()
+  {  
+     vala= EEPROM.read(0x31);
+     Serial.print('a');
+     Serial.print(vala);
+
+      valb= EEPROM.read(0x41);
+     Serial.print('b');
+     Serial.print(valb);
+     
+      valc= EEPROM.read(0x51);
+     Serial.print('c');
+     Serial.print(valc);\
+
+      vald= EEPROM.read(0x61);
+     Serial.print('d');
+     Serial.print(vald);
+
+      vale= EEPROM.read(0x71);
+     Serial.print('e');
+     Serial.print(vale);
+
+      valf= EEPROM.read(0x81);
+     Serial.print('f');
+     Serial.print(valf);
+
+     
+  }
+void loop()
+{
+  if(Serial.available()>0){
+    int inByte = Serial.read();
+  
+  switch (inByte){
+    case 'a':
+    temp_pressure();
+    break;
+    case 'b':
+    temp_pressure();
+    case 'c':
+    soil_moisture();
+    break;
+    case 'd':
+    humidity_sens();
+    break;
+    case 'e':
+    load_sens();
+    break;
+    case 'f':
+    gas_sens();
+    break;
+    default:
+    return ;
+   }
+  }
+  EEPROM.write(address, inByte);
+  address = address + 1;
+  if (address == EEPROM.length()) {
+    address = 0;
+  }
+  
+}
