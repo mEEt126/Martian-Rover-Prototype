@@ -1,0 +1,7 @@
+void transmit_sensor_data(float temp,float pressure,int humid,int moist,float load,int gas)
+{
+  String sensor;
+  String seperator = ":";
+  sensor = seperator + temp + seperator + pressure + seperator + humid + seperator + moist + seperator + load + seperator + gas + seperator; 
+  Serial.println(sensor);
+}
