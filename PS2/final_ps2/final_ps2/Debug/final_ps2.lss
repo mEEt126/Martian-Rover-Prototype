@@ -1,0 +1,1922 @@
+
+final_ps2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000093e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000002a  00800060  0000093e  000009d2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000007d  0080008a  0080008a  000009fc  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000009fc  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000a2c  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000d0  00000000  00000000  00000a68  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001437  00000000  00000000  00000b38  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000929  00000000  00000000  00001f6f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000d74  00000000  00000000  00002898  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001b8  00000000  00000000  0000360c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005cb  00000000  00000000  000037c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000077d  00000000  00000000  00003d8f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000a0  00000000  00000000  0000450c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	ee e3       	ldi	r30, 0x3E	; 62
+  3a:	f9 e0       	ldi	r31, 0x09	; 9
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	aa 38       	cpi	r26, 0x8A	; 138
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	21 e0       	ldi	r18, 0x01	; 1
+  4a:	aa e8       	ldi	r26, 0x8A	; 138
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a7 30       	cpi	r26, 0x07	; 7
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	1d d0       	rcall	.+58     	; 0x94 <main>
+  5a:	6f c4       	rjmp	.+2270   	; 0x93a <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <datapack>:
+	return ((dataByte & (1 << dataBit)) ? 1 : 0);
+}
+
+void datapack(void)
+{
+	x = ~data_array[3];
+  5e:	ea ee       	ldi	r30, 0xEA	; 234
+  60:	f0 e0       	ldi	r31, 0x00	; 0
+  62:	83 81       	ldd	r24, Z+3	; 0x03
+  64:	80 95       	com	r24
+  66:	80 93 db 00 	sts	0x00DB, r24	; 0x8000db <x>
+	y = ~data_array[4];
+  6a:	84 81       	ldd	r24, Z+4	; 0x04
+  6c:	80 95       	com	r24
+  6e:	80 93 03 01 	sts	0x0103, r24	; 0x800103 <y>
+	RIGHT_JOYSTICK_X = ~data_array[5];
+  72:	85 81       	ldd	r24, Z+5	; 0x05
+  74:	80 95       	com	r24
+  76:	80 93 ff 00 	sts	0x00FF, r24	; 0x8000ff <RIGHT_JOYSTICK_X>
+	RIGHT_JOYSTICK_Y = ~data_array[6];
+  7a:	86 81       	ldd	r24, Z+6	; 0x06
+  7c:	80 95       	com	r24
+  7e:	80 93 06 01 	sts	0x0106, r24	; 0x800106 <RIGHT_JOYSTICK_Y>
+	LEFT_JOYSTICK_X  = ~data_array[7];
+  82:	87 81       	ldd	r24, Z+7	; 0x07
+  84:	80 95       	com	r24
+  86:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <LEFT_JOYSTICK_X>
+	LEFT_JOYSTICK_Y  = ~data_array[8];
+  8a:	80 85       	ldd	r24, Z+8	; 0x08
+  8c:	80 95       	com	r24
+  8e:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <LEFT_JOYSTICK_Y>
+  92:	08 95       	ret
+
+00000094 <main>:
+void datapack(void);
+
+
+int main(void)
+{
+	init_PS2();				
+  94:	6e d3       	rcall	.+1756   	; 0x772 <init_PS2>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  96:	83 ef       	ldi	r24, 0xF3	; 243
+  98:	91 e0       	ldi	r25, 0x01	; 1
+  9a:	01 97       	sbiw	r24, 0x01	; 1
+  9c:	f1 f7       	brne	.-4      	; 0x9a <main+0x6>
+  9e:	00 c0       	rjmp	.+0      	; 0xa0 <main+0xc>
+  a0:	00 00       	nop
+	_delay_us(2000);
+	
+
+	USART_Init(12);													//baud rate 38400
+  a2:	8c e0       	ldi	r24, 0x0C	; 12
+  a4:	90 e0       	ldi	r25, 0x00	; 0
+  a6:	3c d4       	rcall	.+2168   	; 0x920 <USART_Init>
+	USART_InterruptEnable();
+  a8:	42 d4       	rcall	.+2180   	; 0x92e <USART_InterruptEnable>
+  aa:	90 e1       	ldi	r25, 0x10	; 16
+  ac:	9a 95       	dec	r25
+  ae:	f1 f7       	brne	.-4      	; 0xac <main+0x18>
+  b0:	00 c0       	rjmp	.+0      	; 0xb2 <main+0x1e>
+				pressed[0]++;
+			}	
+		}
+		else
+		{
+			pressed[0]=0;
+  b2:	ca e8       	ldi	r28, 0x8A	; 138
+  b4:	d0 e0       	ldi	r29, 0x00	; 0
+				pressed[35]++;
+			}
+		}
+		else
+		{
+			pressed[35]=0;
+  b6:	0f 2e       	mov	r0, r31
+  b8:	f0 ed       	ldi	r31, 0xD0	; 208
+  ba:	8f 2e       	mov	r8, r31
+  bc:	f0 e0       	ldi	r31, 0x00	; 0
+  be:	9f 2e       	mov	r9, r31
+  c0:	f0 2d       	mov	r31, r0
+				pressed[30]=0;
+			}
+			
+		if ((isPressed(y,rightFront2))&&(isPressed(x,right)))
+		{
+			if(pressed[36]==0)
+  c2:	0f 2e       	mov	r0, r31
+  c4:	f2 ed       	ldi	r31, 0xD2	; 210
+  c6:	af 2e       	mov	r10, r31
+  c8:	f0 e0       	ldi	r31, 0x00	; 0
+  ca:	bf 2e       	mov	r11, r31
+  cc:	f0 2d       	mov	r31, r0
+				pressed[34]++;
+			}
+		}
+			else
+			{
+				pressed[34]=0;
+  ce:	0f 2e       	mov	r0, r31
+  d0:	fe ec       	ldi	r31, 0xCE	; 206
+  d2:	cf 2e       	mov	r12, r31
+  d4:	f0 e0       	ldi	r31, 0x00	; 0
+  d6:	df 2e       	mov	r13, r31
+  d8:	f0 2d       	mov	r31, r0
+				pressed[33]++;
+			}
+		}
+			else
+			{
+				pressed[33]=0;
+  da:	0f 2e       	mov	r0, r31
+  dc:	fc ec       	ldi	r31, 0xCC	; 204
+  de:	ef 2e       	mov	r14, r31
+  e0:	f0 e0       	ldi	r31, 0x00	; 0
+  e2:	ff 2e       	mov	r15, r31
+  e4:	f0 2d       	mov	r31, r0
+				pressed[32]++;
+			}
+		}
+			else
+			{
+				pressed[32]=0;
+  e6:	0a ec       	ldi	r16, 0xCA	; 202
+  e8:	10 e0       	ldi	r17, 0x00	; 0
+	USART_InterruptEnable();
+	_delay_us(50);
+	
+	while (1)
+	{
+		scan_PS2();
+  ea:	07 d4       	rcall	.+2062   	; 0x8fa <scan_PS2>
+  ec:	e6 ea       	ldi	r30, 0xA6	; 166
+  ee:	ea 95       	dec	r30
+  f0:	f1 f7       	brne	.-4      	; 0xee <main+0x5a>
+  f2:	00 c0       	rjmp	.+0      	; 0xf4 <main+0x60>
+		_delay_us(500);
+		datapack();
+  f4:	b4 df       	rcall	.-152    	; 0x5e <datapack>
+		
+		if(isPressed(x,start))
+  f6:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+  fa:	83 ff       	sbrs	r24, 3
+  fc:	0c c0       	rjmp	.+24     	; 0x116 <main+0x82>
+		{
+			if(pressed[0]==0)
+  fe:	88 81       	ld	r24, Y
+ 100:	99 81       	ldd	r25, Y+1	; 0x01
+ 102:	89 2b       	or	r24, r25
+ 104:	51 f4       	brne	.+20     	; 0x11a <main+0x86>
+			{
+				USART_Transmitchar('A');												//STOP COMMAND
+ 106:	81 e4       	ldi	r24, 0x41	; 65
+ 108:	14 d4       	rcall	.+2088   	; 0x932 <USART_Transmitchar>
+				pressed[0]++;
+ 10a:	88 81       	ld	r24, Y
+ 10c:	99 81       	ldd	r25, Y+1	; 0x01
+ 10e:	01 96       	adiw	r24, 0x01	; 1
+ 110:	99 83       	std	Y+1, r25	; 0x01
+ 112:	88 83       	st	Y, r24
+ 114:	02 c0       	rjmp	.+4      	; 0x11a <main+0x86>
+			}	
+		}
+		else
+		{
+			pressed[0]=0;
+ 116:	19 82       	std	Y+1, r1	; 0x01
+ 118:	18 82       	st	Y, r1
+		}		
+									//---------------------------------------------DRIVING------------------------------------------------------//
+		
+															/* byte x specifies direction of motor and byte y specifies its speed*/
+		
+		if ((isPressed(x,up)) && (isPressed(y,triangle_up)))
+ 11a:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 11e:	84 ff       	sbrs	r24, 4
+ 120:	10 c0       	rjmp	.+32     	; 0x142 <main+0xae>
+ 122:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 126:	84 ff       	sbrs	r24, 4
+ 128:	0c c0       	rjmp	.+24     	; 0x142 <main+0xae>
+		{	
+			if(pressed[1]==0)
+ 12a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 12c:	9b 81       	ldd	r25, Y+3	; 0x03
+ 12e:	89 2b       	or	r24, r25
+ 130:	71 f4       	brne	.+28     	; 0x14e <main+0xba>
+			{
+				USART_Transmitchar('B');
+ 132:	82 e4       	ldi	r24, 0x42	; 66
+ 134:	fe d3       	rcall	.+2044   	; 0x932 <USART_Transmitchar>
+				pressed[1]++;
+ 136:	8a 81       	ldd	r24, Y+2	; 0x02
+ 138:	9b 81       	ldd	r25, Y+3	; 0x03
+ 13a:	01 96       	adiw	r24, 0x01	; 1
+ 13c:	9b 83       	std	Y+3, r25	; 0x03
+ 13e:	8a 83       	std	Y+2, r24	; 0x02
+ 140:	02 c0       	rjmp	.+4      	; 0x146 <main+0xb2>
+			}
+		}
+		else
+		{
+			pressed[1]=0;	
+ 142:	1b 82       	std	Y+3, r1	; 0x03
+ 144:	1a 82       	std	Y+2, r1	; 0x02
+		
+		}
+			
+		if ((isPressed(x,up)) && (isPressed(y,circle_right)))	
+ 146:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 14a:	84 ff       	sbrs	r24, 4
+ 14c:	10 c0       	rjmp	.+32     	; 0x16e <main+0xda>
+ 14e:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 152:	85 ff       	sbrs	r24, 5
+ 154:	0c c0       	rjmp	.+24     	; 0x16e <main+0xda>
+		{
+			if(pressed[2]==0)
+ 156:	8c 81       	ldd	r24, Y+4	; 0x04
+ 158:	9d 81       	ldd	r25, Y+5	; 0x05
+ 15a:	89 2b       	or	r24, r25
+ 15c:	71 f4       	brne	.+28     	; 0x17a <main+0xe6>
+			{
+				USART_Transmitchar('C');
+ 15e:	83 e4       	ldi	r24, 0x43	; 67
+ 160:	e8 d3       	rcall	.+2000   	; 0x932 <USART_Transmitchar>
+				pressed[2]++;
+ 162:	8c 81       	ldd	r24, Y+4	; 0x04
+ 164:	9d 81       	ldd	r25, Y+5	; 0x05
+ 166:	01 96       	adiw	r24, 0x01	; 1
+ 168:	9d 83       	std	Y+5, r25	; 0x05
+ 16a:	8c 83       	std	Y+4, r24	; 0x04
+ 16c:	02 c0       	rjmp	.+4      	; 0x172 <main+0xde>
+				
+			}
+		}
+		else
+		{
+			pressed[2]=0;
+ 16e:	1d 82       	std	Y+5, r1	; 0x05
+ 170:	1c 82       	std	Y+4, r1	; 0x04
+		}
+		
+		if ((isPressed(x,up)) && (isPressed(y,cross_down)))	
+ 172:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 176:	84 ff       	sbrs	r24, 4
+ 178:	10 c0       	rjmp	.+32     	; 0x19a <main+0x106>
+ 17a:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 17e:	86 ff       	sbrs	r24, 6
+ 180:	0c c0       	rjmp	.+24     	; 0x19a <main+0x106>
+		{
+			if(pressed[3]==0)
+ 182:	8e 81       	ldd	r24, Y+6	; 0x06
+ 184:	9f 81       	ldd	r25, Y+7	; 0x07
+ 186:	89 2b       	or	r24, r25
+ 188:	71 f4       	brne	.+28     	; 0x1a6 <main+0x112>
+			{
+				USART_Transmitchar('D');
+ 18a:	84 e4       	ldi	r24, 0x44	; 68
+ 18c:	d2 d3       	rcall	.+1956   	; 0x932 <USART_Transmitchar>
+				pressed[3]++;
+ 18e:	8e 81       	ldd	r24, Y+6	; 0x06
+ 190:	9f 81       	ldd	r25, Y+7	; 0x07
+ 192:	01 96       	adiw	r24, 0x01	; 1
+ 194:	9f 83       	std	Y+7, r25	; 0x07
+ 196:	8e 83       	std	Y+6, r24	; 0x06
+ 198:	02 c0       	rjmp	.+4      	; 0x19e <main+0x10a>
+			}
+		}
+		else
+		{
+			pressed[3]=0;
+ 19a:	1f 82       	std	Y+7, r1	; 0x07
+ 19c:	1e 82       	std	Y+6, r1	; 0x06
+		}
+		
+		if ((isPressed(x,up)) && (isPressed(y,square_left)))
+ 19e:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 1a2:	84 ff       	sbrs	r24, 4
+ 1a4:	10 c0       	rjmp	.+32     	; 0x1c6 <main+0x132>
+ 1a6:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 1aa:	88 23       	and	r24, r24
+ 1ac:	64 f4       	brge	.+24     	; 0x1c6 <main+0x132>
+		{
+			if(pressed[4]==0)
+ 1ae:	88 85       	ldd	r24, Y+8	; 0x08
+ 1b0:	99 85       	ldd	r25, Y+9	; 0x09
+ 1b2:	89 2b       	or	r24, r25
+ 1b4:	51 f4       	brne	.+20     	; 0x1ca <main+0x136>
+			{
+				USART_Transmitchar('E');
+ 1b6:	85 e4       	ldi	r24, 0x45	; 69
+ 1b8:	bc d3       	rcall	.+1912   	; 0x932 <USART_Transmitchar>
+				pressed[4]++;
+ 1ba:	88 85       	ldd	r24, Y+8	; 0x08
+ 1bc:	99 85       	ldd	r25, Y+9	; 0x09
+ 1be:	01 96       	adiw	r24, 0x01	; 1
+ 1c0:	99 87       	std	Y+9, r25	; 0x09
+ 1c2:	88 87       	std	Y+8, r24	; 0x08
+ 1c4:	02 c0       	rjmp	.+4      	; 0x1ca <main+0x136>
+			}
+		}
+		else
+		{
+			pressed[4]=0;
+ 1c6:	19 86       	std	Y+9, r1	; 0x09
+ 1c8:	18 86       	std	Y+8, r1	; 0x08
+		}
+			
+		if ((isPressed(x,down)) && (isPressed(y,triangle_up)))
+ 1ca:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 1ce:	86 ff       	sbrs	r24, 6
+ 1d0:	10 c0       	rjmp	.+32     	; 0x1f2 <main+0x15e>
+ 1d2:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 1d6:	84 ff       	sbrs	r24, 4
+ 1d8:	0c c0       	rjmp	.+24     	; 0x1f2 <main+0x15e>
+		{
+			if(pressed[5]==0)
+ 1da:	8a 85       	ldd	r24, Y+10	; 0x0a
+ 1dc:	9b 85       	ldd	r25, Y+11	; 0x0b
+ 1de:	89 2b       	or	r24, r25
+ 1e0:	71 f4       	brne	.+28     	; 0x1fe <main+0x16a>
+			{
+				USART_Transmitchar('F');
+ 1e2:	86 e4       	ldi	r24, 0x46	; 70
+ 1e4:	a6 d3       	rcall	.+1868   	; 0x932 <USART_Transmitchar>
+				pressed[5]++;
+ 1e6:	8a 85       	ldd	r24, Y+10	; 0x0a
+ 1e8:	9b 85       	ldd	r25, Y+11	; 0x0b
+ 1ea:	01 96       	adiw	r24, 0x01	; 1
+ 1ec:	9b 87       	std	Y+11, r25	; 0x0b
+ 1ee:	8a 87       	std	Y+10, r24	; 0x0a
+ 1f0:	02 c0       	rjmp	.+4      	; 0x1f6 <main+0x162>
+			}
+		}
+		else
+		{
+			pressed[5]=0;
+ 1f2:	1b 86       	std	Y+11, r1	; 0x0b
+ 1f4:	1a 86       	std	Y+10, r1	; 0x0a
+		}
+		
+		if ((isPressed(x,down)) && (isPressed(y,circle_right)))	
+ 1f6:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 1fa:	86 ff       	sbrs	r24, 6
+ 1fc:	10 c0       	rjmp	.+32     	; 0x21e <main+0x18a>
+ 1fe:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 202:	85 ff       	sbrs	r24, 5
+ 204:	0c c0       	rjmp	.+24     	; 0x21e <main+0x18a>
+		{
+			if(pressed[6]==0)
+ 206:	8c 85       	ldd	r24, Y+12	; 0x0c
+ 208:	9d 85       	ldd	r25, Y+13	; 0x0d
+ 20a:	89 2b       	or	r24, r25
+ 20c:	71 f4       	brne	.+28     	; 0x22a <main+0x196>
+			{
+				USART_Transmitchar('G');
+ 20e:	87 e4       	ldi	r24, 0x47	; 71
+ 210:	90 d3       	rcall	.+1824   	; 0x932 <USART_Transmitchar>
+				pressed[6]++;
+ 212:	8c 85       	ldd	r24, Y+12	; 0x0c
+ 214:	9d 85       	ldd	r25, Y+13	; 0x0d
+ 216:	01 96       	adiw	r24, 0x01	; 1
+ 218:	9d 87       	std	Y+13, r25	; 0x0d
+ 21a:	8c 87       	std	Y+12, r24	; 0x0c
+ 21c:	02 c0       	rjmp	.+4      	; 0x222 <main+0x18e>
+				
+			}
+		}
+		else
+		{
+			pressed[6]=0;
+ 21e:	1d 86       	std	Y+13, r1	; 0x0d
+ 220:	1c 86       	std	Y+12, r1	; 0x0c
+		}
+		
+		if ((isPressed(x,down)) && (isPressed(y,cross_down)))	
+ 222:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 226:	86 ff       	sbrs	r24, 6
+ 228:	10 c0       	rjmp	.+32     	; 0x24a <main+0x1b6>
+ 22a:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 22e:	86 ff       	sbrs	r24, 6
+ 230:	0c c0       	rjmp	.+24     	; 0x24a <main+0x1b6>
+		{
+			if(pressed[7]==0)
+ 232:	8e 85       	ldd	r24, Y+14	; 0x0e
+ 234:	9f 85       	ldd	r25, Y+15	; 0x0f
+ 236:	89 2b       	or	r24, r25
+ 238:	71 f4       	brne	.+28     	; 0x256 <main+0x1c2>
+			{
+				USART_Transmitchar('H');
+ 23a:	88 e4       	ldi	r24, 0x48	; 72
+ 23c:	7a d3       	rcall	.+1780   	; 0x932 <USART_Transmitchar>
+				pressed[7]++;
+ 23e:	8e 85       	ldd	r24, Y+14	; 0x0e
+ 240:	9f 85       	ldd	r25, Y+15	; 0x0f
+ 242:	01 96       	adiw	r24, 0x01	; 1
+ 244:	9f 87       	std	Y+15, r25	; 0x0f
+ 246:	8e 87       	std	Y+14, r24	; 0x0e
+ 248:	02 c0       	rjmp	.+4      	; 0x24e <main+0x1ba>
+			}
+		}
+		else
+		{
+			pressed[7]=0;
+ 24a:	1f 86       	std	Y+15, r1	; 0x0f
+ 24c:	1e 86       	std	Y+14, r1	; 0x0e
+		}
+		
+		if ((isPressed(x,down)) && (isPressed(y,square_left)))	
+ 24e:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 252:	86 ff       	sbrs	r24, 6
+ 254:	10 c0       	rjmp	.+32     	; 0x276 <main+0x1e2>
+ 256:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 25a:	88 23       	and	r24, r24
+ 25c:	64 f4       	brge	.+24     	; 0x276 <main+0x1e2>
+		{
+			if(pressed[8]==0)
+ 25e:	88 89       	ldd	r24, Y+16	; 0x10
+ 260:	99 89       	ldd	r25, Y+17	; 0x11
+ 262:	89 2b       	or	r24, r25
+ 264:	51 f4       	brne	.+20     	; 0x27a <main+0x1e6>
+			{
+				USART_Transmitchar('I');
+ 266:	89 e4       	ldi	r24, 0x49	; 73
+ 268:	64 d3       	rcall	.+1736   	; 0x932 <USART_Transmitchar>
+				pressed[8]++;
+ 26a:	88 89       	ldd	r24, Y+16	; 0x10
+ 26c:	99 89       	ldd	r25, Y+17	; 0x11
+ 26e:	01 96       	adiw	r24, 0x01	; 1
+ 270:	99 8b       	std	Y+17, r25	; 0x11
+ 272:	88 8b       	std	Y+16, r24	; 0x10
+ 274:	02 c0       	rjmp	.+4      	; 0x27a <main+0x1e6>
+			}
+		}
+			else
+			{
+				pressed[8]=0;
+ 276:	19 8a       	std	Y+17, r1	; 0x11
+ 278:	18 8a       	std	Y+16, r1	; 0x10
+			}
+			
+		if ((isPressed(x,leftStick)) && (isPressed(x,rightStick)))  //reset for steering
+ 27a:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 27e:	86 70       	andi	r24, 0x06	; 6
+ 280:	86 30       	cpi	r24, 0x06	; 6
+ 282:	71 f4       	brne	.+28     	; 0x2a0 <main+0x20c>
+		{
+			if(pressed[35]==0)
+ 284:	f4 01       	movw	r30, r8
+ 286:	80 81       	ld	r24, Z
+ 288:	91 81       	ldd	r25, Z+1	; 0x01
+ 28a:	89 2b       	or	r24, r25
+ 28c:	61 f4       	brne	.+24     	; 0x2a6 <main+0x212>
+			{
+				USART_Transmitchar('I');
+ 28e:	89 e4       	ldi	r24, 0x49	; 73
+ 290:	50 d3       	rcall	.+1696   	; 0x932 <USART_Transmitchar>
+				pressed[35]++;
+ 292:	f4 01       	movw	r30, r8
+ 294:	80 81       	ld	r24, Z
+ 296:	91 81       	ldd	r25, Z+1	; 0x01
+ 298:	01 96       	adiw	r24, 0x01	; 1
+ 29a:	91 83       	std	Z+1, r25	; 0x01
+ 29c:	80 83       	st	Z, r24
+ 29e:	03 c0       	rjmp	.+6      	; 0x2a6 <main+0x212>
+			}
+		}
+		else
+		{
+			pressed[35]=0;
+ 2a0:	f4 01       	movw	r30, r8
+ 2a2:	11 82       	std	Z+1, r1	; 0x01
+ 2a4:	10 82       	st	Z, r1
+			
+		
+							//------------------------------------------------------------------TURNING--------------------------------------------------------------------------//
+		
+		
+		if ((isPressed(x,left)) && (isPressed(y,triangle_up)))
+ 2a6:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 2aa:	88 23       	and	r24, r24
+ 2ac:	84 f4       	brge	.+32     	; 0x2ce <main+0x23a>
+ 2ae:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 2b2:	84 ff       	sbrs	r24, 4
+ 2b4:	0c c0       	rjmp	.+24     	; 0x2ce <main+0x23a>
+		 	{
+		 		if(pressed[9]==0)
+ 2b6:	8a 89       	ldd	r24, Y+18	; 0x12
+ 2b8:	9b 89       	ldd	r25, Y+19	; 0x13
+ 2ba:	89 2b       	or	r24, r25
+ 2bc:	71 f4       	brne	.+28     	; 0x2da <main+0x246>
+		 		{
+		 			USART_Transmitchar('J');
+ 2be:	8a e4       	ldi	r24, 0x4A	; 74
+ 2c0:	38 d3       	rcall	.+1648   	; 0x932 <USART_Transmitchar>
+		 			pressed[9]++;
+ 2c2:	8a 89       	ldd	r24, Y+18	; 0x12
+ 2c4:	9b 89       	ldd	r25, Y+19	; 0x13
+ 2c6:	01 96       	adiw	r24, 0x01	; 1
+ 2c8:	9b 8b       	std	Y+19, r25	; 0x13
+ 2ca:	8a 8b       	std	Y+18, r24	; 0x12
+ 2cc:	02 c0       	rjmp	.+4      	; 0x2d2 <main+0x23e>
+		 		}
+		 	}
+		 else
+		 	{
+		 		pressed[9]=0;
+ 2ce:	1b 8a       	std	Y+19, r1	; 0x13
+ 2d0:	1a 8a       	std	Y+18, r1	; 0x12
+		 	}
+		
+		 	if ((isPressed(x,left)) && (isPressed(y,cross_down)))
+ 2d2:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 2d6:	88 23       	and	r24, r24
+ 2d8:	84 f4       	brge	.+32     	; 0x2fa <main+0x266>
+ 2da:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 2de:	86 ff       	sbrs	r24, 6
+ 2e0:	0c c0       	rjmp	.+24     	; 0x2fa <main+0x266>
+		 	{
+		 		if(pressed[10]==0)
+ 2e2:	8c 89       	ldd	r24, Y+20	; 0x14
+ 2e4:	9d 89       	ldd	r25, Y+21	; 0x15
+ 2e6:	89 2b       	or	r24, r25
+ 2e8:	71 f4       	brne	.+28     	; 0x306 <main+0x272>
+		 		{
+		 			USART_Transmitchar('K');
+ 2ea:	8b e4       	ldi	r24, 0x4B	; 75
+ 2ec:	22 d3       	rcall	.+1604   	; 0x932 <USART_Transmitchar>
+		 			pressed[10]++;
+ 2ee:	8c 89       	ldd	r24, Y+20	; 0x14
+ 2f0:	9d 89       	ldd	r25, Y+21	; 0x15
+ 2f2:	01 96       	adiw	r24, 0x01	; 1
+ 2f4:	9d 8b       	std	Y+21, r25	; 0x15
+ 2f6:	8c 8b       	std	Y+20, r24	; 0x14
+ 2f8:	02 c0       	rjmp	.+4      	; 0x2fe <main+0x26a>
+		 		}
+		 	}
+		 		else
+		 		{
+		 			pressed[10]=0;
+ 2fa:	1d 8a       	std	Y+21, r1	; 0x15
+ 2fc:	1c 8a       	std	Y+20, r1	; 0x14
+		 		}
+		
+		 	if((isPressed(x,left)) && (isPressed(y,circle_right)))	
+ 2fe:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 302:	88 23       	and	r24, r24
+ 304:	84 f4       	brge	.+32     	; 0x326 <main+0x292>
+ 306:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 30a:	85 ff       	sbrs	r24, 5
+ 30c:	0c c0       	rjmp	.+24     	; 0x326 <main+0x292>
+		 	{
+		 		if(pressed[11]==0)
+ 30e:	8e 89       	ldd	r24, Y+22	; 0x16
+ 310:	9f 89       	ldd	r25, Y+23	; 0x17
+ 312:	89 2b       	or	r24, r25
+ 314:	71 f4       	brne	.+28     	; 0x332 <main+0x29e>
+		 		{
+		 			USART_Transmitchar('L');
+ 316:	8c e4       	ldi	r24, 0x4C	; 76
+ 318:	0c d3       	rcall	.+1560   	; 0x932 <USART_Transmitchar>
+		 			pressed[11]++;
+ 31a:	8e 89       	ldd	r24, Y+22	; 0x16
+ 31c:	9f 89       	ldd	r25, Y+23	; 0x17
+ 31e:	01 96       	adiw	r24, 0x01	; 1
+ 320:	9f 8b       	std	Y+23, r25	; 0x17
+ 322:	8e 8b       	std	Y+22, r24	; 0x16
+ 324:	02 c0       	rjmp	.+4      	; 0x32a <main+0x296>
+		 		}
+		 	}
+		 	else
+		 	{
+		 		pressed[11]=0;
+ 326:	1f 8a       	std	Y+23, r1	; 0x17
+ 328:	1e 8a       	std	Y+22, r1	; 0x16
+		 	}
+		
+		 	if ((isPressed(x,left)) && (isPressed(y,square_left)))
+ 32a:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 32e:	88 23       	and	r24, r24
+ 330:	84 f4       	brge	.+32     	; 0x352 <main+0x2be>
+ 332:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 336:	88 23       	and	r24, r24
+ 338:	64 f4       	brge	.+24     	; 0x352 <main+0x2be>
+		 	{
+		 		if(pressed[12]==0)
+ 33a:	88 8d       	ldd	r24, Y+24	; 0x18
+ 33c:	99 8d       	ldd	r25, Y+25	; 0x19
+ 33e:	89 2b       	or	r24, r25
+ 340:	51 f4       	brne	.+20     	; 0x356 <main+0x2c2>
+		 		{
+		 			USART_Transmitchar('M');
+ 342:	8d e4       	ldi	r24, 0x4D	; 77
+ 344:	f6 d2       	rcall	.+1516   	; 0x932 <USART_Transmitchar>
+		 			pressed[12]++;
+ 346:	88 8d       	ldd	r24, Y+24	; 0x18
+ 348:	99 8d       	ldd	r25, Y+25	; 0x19
+ 34a:	01 96       	adiw	r24, 0x01	; 1
+ 34c:	99 8f       	std	Y+25, r25	; 0x19
+ 34e:	88 8f       	std	Y+24, r24	; 0x18
+ 350:	02 c0       	rjmp	.+4      	; 0x356 <main+0x2c2>
+		 		}
+		 	}
+		 		else
+		 		{
+		 			pressed[12]=0;
+ 352:	19 8e       	std	Y+25, r1	; 0x19
+ 354:	18 8e       	std	Y+24, r1	; 0x18
+		 		}	
+		
+							//---------------------------------------------------------------------ARM------------------------------------------------------------------//
+							
+		
+		if ((isPressed(y,leftFront1)) && (isPressed(y,triangle_up)))	
+ 356:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 35a:	84 71       	andi	r24, 0x14	; 20
+ 35c:	84 31       	cpi	r24, 0x14	; 20
+ 35e:	61 f4       	brne	.+24     	; 0x378 <main+0x2e4>
+		{
+			if(pressed[13]==0)
+ 360:	8a 8d       	ldd	r24, Y+26	; 0x1a
+ 362:	9b 8d       	ldd	r25, Y+27	; 0x1b
+ 364:	89 2b       	or	r24, r25
+ 366:	51 f4       	brne	.+20     	; 0x37c <main+0x2e8>
+			{
+				USART_Transmitchar('a');
+ 368:	81 e6       	ldi	r24, 0x61	; 97
+ 36a:	e3 d2       	rcall	.+1478   	; 0x932 <USART_Transmitchar>
+				pressed[13]++;
+ 36c:	8a 8d       	ldd	r24, Y+26	; 0x1a
+ 36e:	9b 8d       	ldd	r25, Y+27	; 0x1b
+ 370:	01 96       	adiw	r24, 0x01	; 1
+ 372:	9b 8f       	std	Y+27, r25	; 0x1b
+ 374:	8a 8f       	std	Y+26, r24	; 0x1a
+ 376:	02 c0       	rjmp	.+4      	; 0x37c <main+0x2e8>
+			}
+		}
+			else
+			{
+				pressed[13]=0;
+ 378:	1b 8e       	std	Y+27, r1	; 0x1b
+ 37a:	1a 8e       	std	Y+26, r1	; 0x1a
+			}
+		
+		if ((isPressed(y,leftFront1)) && (isPressed(y,cross_down)))	
+ 37c:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 380:	84 74       	andi	r24, 0x44	; 68
+ 382:	84 34       	cpi	r24, 0x44	; 68
+ 384:	61 f4       	brne	.+24     	; 0x39e <main+0x30a>
+		{
+			if(pressed[14]==0)
+ 386:	8c 8d       	ldd	r24, Y+28	; 0x1c
+ 388:	9d 8d       	ldd	r25, Y+29	; 0x1d
+ 38a:	89 2b       	or	r24, r25
+ 38c:	51 f4       	brne	.+20     	; 0x3a2 <main+0x30e>
+			{
+				USART_Transmitchar('b');
+ 38e:	82 e6       	ldi	r24, 0x62	; 98
+ 390:	d0 d2       	rcall	.+1440   	; 0x932 <USART_Transmitchar>
+				pressed[14]++;
+ 392:	8c 8d       	ldd	r24, Y+28	; 0x1c
+ 394:	9d 8d       	ldd	r25, Y+29	; 0x1d
+ 396:	01 96       	adiw	r24, 0x01	; 1
+ 398:	9d 8f       	std	Y+29, r25	; 0x1d
+ 39a:	8c 8f       	std	Y+28, r24	; 0x1c
+ 39c:	02 c0       	rjmp	.+4      	; 0x3a2 <main+0x30e>
+			}
+		}
+			else
+			{
+				pressed[14]=0;
+ 39e:	1d 8e       	std	Y+29, r1	; 0x1d
+ 3a0:	1c 8e       	std	Y+28, r1	; 0x1c
+			}
+		
+		if ((isPressed(y,leftFront1)) && (isPressed(y,circle_right)))	
+ 3a2:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 3a6:	84 72       	andi	r24, 0x24	; 36
+ 3a8:	84 32       	cpi	r24, 0x24	; 36
+ 3aa:	61 f4       	brne	.+24     	; 0x3c4 <main+0x330>
+		{
+			if(pressed[15]==0)
+ 3ac:	8e 8d       	ldd	r24, Y+30	; 0x1e
+ 3ae:	9f 8d       	ldd	r25, Y+31	; 0x1f
+ 3b0:	89 2b       	or	r24, r25
+ 3b2:	51 f4       	brne	.+20     	; 0x3c8 <main+0x334>
+			{
+				USART_Transmitchar('c');
+ 3b4:	83 e6       	ldi	r24, 0x63	; 99
+ 3b6:	bd d2       	rcall	.+1402   	; 0x932 <USART_Transmitchar>
+				pressed[15]++;
+ 3b8:	8e 8d       	ldd	r24, Y+30	; 0x1e
+ 3ba:	9f 8d       	ldd	r25, Y+31	; 0x1f
+ 3bc:	01 96       	adiw	r24, 0x01	; 1
+ 3be:	9f 8f       	std	Y+31, r25	; 0x1f
+ 3c0:	8e 8f       	std	Y+30, r24	; 0x1e
+ 3c2:	02 c0       	rjmp	.+4      	; 0x3c8 <main+0x334>
+			}
+		}
+			else
+			{
+				pressed[15]=0;
+ 3c4:	1f 8e       	std	Y+31, r1	; 0x1f
+ 3c6:	1e 8e       	std	Y+30, r1	; 0x1e
+			}
+		
+		if ((isPressed(y,leftFront1)) && (isPressed(y,square_left)))	
+ 3c8:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 3cc:	84 78       	andi	r24, 0x84	; 132
+ 3ce:	84 38       	cpi	r24, 0x84	; 132
+ 3d0:	61 f4       	brne	.+24     	; 0x3ea <main+0x356>
+		{
+			if(pressed[16]==0)
+ 3d2:	88 a1       	ldd	r24, Y+32	; 0x20
+ 3d4:	99 a1       	ldd	r25, Y+33	; 0x21
+ 3d6:	89 2b       	or	r24, r25
+ 3d8:	51 f4       	brne	.+20     	; 0x3ee <main+0x35a>
+			{
+				USART_Transmitchar('d');
+ 3da:	84 e6       	ldi	r24, 0x64	; 100
+ 3dc:	aa d2       	rcall	.+1364   	; 0x932 <USART_Transmitchar>
+				pressed[16]++;
+ 3de:	88 a1       	ldd	r24, Y+32	; 0x20
+ 3e0:	99 a1       	ldd	r25, Y+33	; 0x21
+ 3e2:	01 96       	adiw	r24, 0x01	; 1
+ 3e4:	99 a3       	std	Y+33, r25	; 0x21
+ 3e6:	88 a3       	std	Y+32, r24	; 0x20
+ 3e8:	02 c0       	rjmp	.+4      	; 0x3ee <main+0x35a>
+			}
+		}
+			else
+			{
+				pressed[16]=0;
+ 3ea:	19 a2       	std	Y+33, r1	; 0x21
+ 3ec:	18 a2       	std	Y+32, r1	; 0x20
+			}
+		
+		if ((isPressed(y,leftFront1)) && (isPressed(x,right)))	
+ 3ee:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 3f2:	82 ff       	sbrs	r24, 2
+ 3f4:	10 c0       	rjmp	.+32     	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+ 3f6:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 3fa:	85 ff       	sbrs	r24, 5
+ 3fc:	0c c0       	rjmp	.+24     	; 0x416 <__LOCK_REGION_LENGTH__+0x16>
+		{
+			if(pressed[17]==0)
+ 3fe:	8a a1       	ldd	r24, Y+34	; 0x22
+ 400:	9b a1       	ldd	r25, Y+35	; 0x23
+ 402:	89 2b       	or	r24, r25
+ 404:	71 f4       	brne	.+28     	; 0x422 <__LOCK_REGION_LENGTH__+0x22>
+			{
+				USART_Transmitchar('e');
+ 406:	85 e6       	ldi	r24, 0x65	; 101
+ 408:	94 d2       	rcall	.+1320   	; 0x932 <USART_Transmitchar>
+				pressed[17]++;
+ 40a:	8a a1       	ldd	r24, Y+34	; 0x22
+ 40c:	9b a1       	ldd	r25, Y+35	; 0x23
+ 40e:	01 96       	adiw	r24, 0x01	; 1
+ 410:	9b a3       	std	Y+35, r25	; 0x23
+ 412:	8a a3       	std	Y+34, r24	; 0x22
+ 414:	02 c0       	rjmp	.+4      	; 0x41a <__LOCK_REGION_LENGTH__+0x1a>
+			}
+		}
+			else
+			{
+				pressed[17]=0;
+ 416:	1b a2       	std	Y+35, r1	; 0x23
+ 418:	1a a2       	std	Y+34, r1	; 0x22
+			}
+		
+		if ((isPressed(y,leftFront1)) && (isPressed(x,left)))	
+ 41a:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 41e:	82 ff       	sbrs	r24, 2
+ 420:	10 c0       	rjmp	.+32     	; 0x442 <__LOCK_REGION_LENGTH__+0x42>
+ 422:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 426:	88 23       	and	r24, r24
+ 428:	64 f4       	brge	.+24     	; 0x442 <__LOCK_REGION_LENGTH__+0x42>
+		{
+			if(pressed[18]==0)
+ 42a:	8c a1       	ldd	r24, Y+36	; 0x24
+ 42c:	9d a1       	ldd	r25, Y+37	; 0x25
+ 42e:	89 2b       	or	r24, r25
+ 430:	51 f4       	brne	.+20     	; 0x446 <__LOCK_REGION_LENGTH__+0x46>
+			{
+				USART_Transmitchar('f');
+ 432:	86 e6       	ldi	r24, 0x66	; 102
+ 434:	7e d2       	rcall	.+1276   	; 0x932 <USART_Transmitchar>
+				pressed[18]++;
+ 436:	8c a1       	ldd	r24, Y+36	; 0x24
+ 438:	9d a1       	ldd	r25, Y+37	; 0x25
+ 43a:	01 96       	adiw	r24, 0x01	; 1
+ 43c:	9d a3       	std	Y+37, r25	; 0x25
+ 43e:	8c a3       	std	Y+36, r24	; 0x24
+ 440:	02 c0       	rjmp	.+4      	; 0x446 <__LOCK_REGION_LENGTH__+0x46>
+			}
+		}
+			else
+			{
+				pressed[18]=0;
+ 442:	1d a2       	std	Y+37, r1	; 0x25
+ 444:	1c a2       	std	Y+36, r1	; 0x24
+			}
+		
+		if ((isPressed(y,rightFront1)) && (isPressed(y,triangle_up)))	
+ 446:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 44a:	88 71       	andi	r24, 0x18	; 24
+ 44c:	88 31       	cpi	r24, 0x18	; 24
+ 44e:	61 f4       	brne	.+24     	; 0x468 <__stack+0x9>
+		{
+			if(pressed[19]==0)
+ 450:	8e a1       	ldd	r24, Y+38	; 0x26
+ 452:	9f a1       	ldd	r25, Y+39	; 0x27
+ 454:	89 2b       	or	r24, r25
+ 456:	51 f4       	brne	.+20     	; 0x46c <__stack+0xd>
+			{
+				USART_Transmitchar('g');
+ 458:	87 e6       	ldi	r24, 0x67	; 103
+ 45a:	6b d2       	rcall	.+1238   	; 0x932 <USART_Transmitchar>
+				pressed[19]++;
+ 45c:	8e a1       	ldd	r24, Y+38	; 0x26
+ 45e:	9f a1       	ldd	r25, Y+39	; 0x27
+ 460:	01 96       	adiw	r24, 0x01	; 1
+ 462:	9f a3       	std	Y+39, r25	; 0x27
+ 464:	8e a3       	std	Y+38, r24	; 0x26
+ 466:	02 c0       	rjmp	.+4      	; 0x46c <__stack+0xd>
+			}
+		}
+			else
+			{
+				pressed[19]=0;
+ 468:	1f a2       	std	Y+39, r1	; 0x27
+ 46a:	1e a2       	std	Y+38, r1	; 0x26
+			}
+		
+		if ((isPressed(y,rightFront1)) && (isPressed(y,cross_down)))	
+ 46c:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 470:	88 74       	andi	r24, 0x48	; 72
+ 472:	88 34       	cpi	r24, 0x48	; 72
+ 474:	61 f4       	brne	.+24     	; 0x48e <__stack+0x2f>
+		{
+			if(pressed[20]==0)
+ 476:	88 a5       	ldd	r24, Y+40	; 0x28
+ 478:	99 a5       	ldd	r25, Y+41	; 0x29
+ 47a:	89 2b       	or	r24, r25
+ 47c:	51 f4       	brne	.+20     	; 0x492 <__stack+0x33>
+			{
+				USART_Transmitchar('h');
+ 47e:	88 e6       	ldi	r24, 0x68	; 104
+ 480:	58 d2       	rcall	.+1200   	; 0x932 <USART_Transmitchar>
+				pressed[20]++;
+ 482:	88 a5       	ldd	r24, Y+40	; 0x28
+ 484:	99 a5       	ldd	r25, Y+41	; 0x29
+ 486:	01 96       	adiw	r24, 0x01	; 1
+ 488:	99 a7       	std	Y+41, r25	; 0x29
+ 48a:	88 a7       	std	Y+40, r24	; 0x28
+ 48c:	02 c0       	rjmp	.+4      	; 0x492 <__stack+0x33>
+			}
+		}
+			else
+			{
+				pressed[20]=0;
+ 48e:	19 a6       	std	Y+41, r1	; 0x29
+ 490:	18 a6       	std	Y+40, r1	; 0x28
+			}
+		
+		if ((isPressed(y,rightFront1)) && (isPressed(y,circle_right)))	
+ 492:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 496:	88 72       	andi	r24, 0x28	; 40
+ 498:	88 32       	cpi	r24, 0x28	; 40
+ 49a:	61 f4       	brne	.+24     	; 0x4b4 <__stack+0x55>
+		{
+			if(pressed[21]==0)
+ 49c:	8a a5       	ldd	r24, Y+42	; 0x2a
+ 49e:	9b a5       	ldd	r25, Y+43	; 0x2b
+ 4a0:	89 2b       	or	r24, r25
+ 4a2:	51 f4       	brne	.+20     	; 0x4b8 <__stack+0x59>
+			{
+				USART_Transmitchar('i');
+ 4a4:	89 e6       	ldi	r24, 0x69	; 105
+ 4a6:	45 d2       	rcall	.+1162   	; 0x932 <USART_Transmitchar>
+				pressed[21]++;
+ 4a8:	8a a5       	ldd	r24, Y+42	; 0x2a
+ 4aa:	9b a5       	ldd	r25, Y+43	; 0x2b
+ 4ac:	01 96       	adiw	r24, 0x01	; 1
+ 4ae:	9b a7       	std	Y+43, r25	; 0x2b
+ 4b0:	8a a7       	std	Y+42, r24	; 0x2a
+ 4b2:	02 c0       	rjmp	.+4      	; 0x4b8 <__stack+0x59>
+			}
+		}
+			else
+			{
+				pressed[21]=0;
+ 4b4:	1b a6       	std	Y+43, r1	; 0x2b
+ 4b6:	1a a6       	std	Y+42, r1	; 0x2a
+			}
+		
+		if ((isPressed(y,rightFront1)) && (isPressed(y,square_left)))	
+ 4b8:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 4bc:	88 78       	andi	r24, 0x88	; 136
+ 4be:	88 38       	cpi	r24, 0x88	; 136
+ 4c0:	61 f4       	brne	.+24     	; 0x4da <__stack+0x7b>
+		{
+			if(pressed[22]==0)
+ 4c2:	8c a5       	ldd	r24, Y+44	; 0x2c
+ 4c4:	9d a5       	ldd	r25, Y+45	; 0x2d
+ 4c6:	89 2b       	or	r24, r25
+ 4c8:	51 f4       	brne	.+20     	; 0x4de <__stack+0x7f>
+			{
+				USART_Transmitchar('j');
+ 4ca:	8a e6       	ldi	r24, 0x6A	; 106
+ 4cc:	32 d2       	rcall	.+1124   	; 0x932 <USART_Transmitchar>
+				pressed[22]++;
+ 4ce:	8c a5       	ldd	r24, Y+44	; 0x2c
+ 4d0:	9d a5       	ldd	r25, Y+45	; 0x2d
+ 4d2:	01 96       	adiw	r24, 0x01	; 1
+ 4d4:	9d a7       	std	Y+45, r25	; 0x2d
+ 4d6:	8c a7       	std	Y+44, r24	; 0x2c
+ 4d8:	02 c0       	rjmp	.+4      	; 0x4de <__stack+0x7f>
+			}
+		}
+			else
+			{
+				pressed[22]=0;
+ 4da:	1d a6       	std	Y+45, r1	; 0x2d
+ 4dc:	1c a6       	std	Y+44, r1	; 0x2c
+			}
+		
+		if ((isPressed(y,rightFront1)) && (isPressed(x,right)))	
+ 4de:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 4e2:	83 ff       	sbrs	r24, 3
+ 4e4:	10 c0       	rjmp	.+32     	; 0x506 <__stack+0xa7>
+ 4e6:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 4ea:	85 ff       	sbrs	r24, 5
+ 4ec:	0c c0       	rjmp	.+24     	; 0x506 <__stack+0xa7>
+		{
+			if(pressed[23]==0)
+ 4ee:	8e a5       	ldd	r24, Y+46	; 0x2e
+ 4f0:	9f a5       	ldd	r25, Y+47	; 0x2f
+ 4f2:	89 2b       	or	r24, r25
+ 4f4:	71 f4       	brne	.+28     	; 0x512 <__stack+0xb3>
+			{
+				USART_Transmitchar('k');
+ 4f6:	8b e6       	ldi	r24, 0x6B	; 107
+ 4f8:	1c d2       	rcall	.+1080   	; 0x932 <USART_Transmitchar>
+				pressed[23]++;
+ 4fa:	8e a5       	ldd	r24, Y+46	; 0x2e
+ 4fc:	9f a5       	ldd	r25, Y+47	; 0x2f
+ 4fe:	01 96       	adiw	r24, 0x01	; 1
+ 500:	9f a7       	std	Y+47, r25	; 0x2f
+ 502:	8e a7       	std	Y+46, r24	; 0x2e
+ 504:	02 c0       	rjmp	.+4      	; 0x50a <__stack+0xab>
+			}
+		}
+			else
+			{
+				pressed[23]=0;
+ 506:	1f a6       	std	Y+47, r1	; 0x2f
+ 508:	1e a6       	std	Y+46, r1	; 0x2e
+			}
+		
+		if ((isPressed(y,rightFront1)) && (isPressed(x,left)))	
+ 50a:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 50e:	83 ff       	sbrs	r24, 3
+ 510:	10 c0       	rjmp	.+32     	; 0x532 <__stack+0xd3>
+ 512:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 516:	88 23       	and	r24, r24
+ 518:	64 f4       	brge	.+24     	; 0x532 <__stack+0xd3>
+		{
+			if(pressed[24]==0)
+ 51a:	88 a9       	ldd	r24, Y+48	; 0x30
+ 51c:	99 a9       	ldd	r25, Y+49	; 0x31
+ 51e:	89 2b       	or	r24, r25
+ 520:	51 f4       	brne	.+20     	; 0x536 <__stack+0xd7>
+			{
+				USART_Transmitchar('l');
+ 522:	8c e6       	ldi	r24, 0x6C	; 108
+ 524:	06 d2       	rcall	.+1036   	; 0x932 <USART_Transmitchar>
+				pressed[24]++;
+ 526:	88 a9       	ldd	r24, Y+48	; 0x30
+ 528:	99 a9       	ldd	r25, Y+49	; 0x31
+ 52a:	01 96       	adiw	r24, 0x01	; 1
+ 52c:	99 ab       	std	Y+49, r25	; 0x31
+ 52e:	88 ab       	std	Y+48, r24	; 0x30
+ 530:	02 c0       	rjmp	.+4      	; 0x536 <__stack+0xd7>
+			}
+		}
+			else
+			{
+				pressed[24]=0;
+ 532:	19 aa       	std	Y+49, r1	; 0x31
+ 534:	18 aa       	std	Y+48, r1	; 0x30
+			}
+		
+									//------------------------------------------------------------SENSOR--------------------------------------------------------------------------//
+									
+		
+		if ((isPressed(y,rightFront2)) && (isPressed(y,triangle_up)))	
+ 536:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 53a:	82 71       	andi	r24, 0x12	; 18
+ 53c:	82 31       	cpi	r24, 0x12	; 18
+ 53e:	61 f4       	brne	.+24     	; 0x558 <__stack+0xf9>
+		{
+			if(pressed[25]==0)
+ 540:	8a a9       	ldd	r24, Y+50	; 0x32
+ 542:	9b a9       	ldd	r25, Y+51	; 0x33
+ 544:	89 2b       	or	r24, r25
+ 546:	51 f4       	brne	.+20     	; 0x55c <__stack+0xfd>
+			{
+				USART_Transmitchar('0');
+ 548:	80 e3       	ldi	r24, 0x30	; 48
+ 54a:	f3 d1       	rcall	.+998    	; 0x932 <USART_Transmitchar>
+				pressed[25]++;
+ 54c:	8a a9       	ldd	r24, Y+50	; 0x32
+ 54e:	9b a9       	ldd	r25, Y+51	; 0x33
+ 550:	01 96       	adiw	r24, 0x01	; 1
+ 552:	9b ab       	std	Y+51, r25	; 0x33
+ 554:	8a ab       	std	Y+50, r24	; 0x32
+ 556:	02 c0       	rjmp	.+4      	; 0x55c <__stack+0xfd>
+			}
+		}
+			else
+			{
+				pressed[25]=0;
+ 558:	1b aa       	std	Y+51, r1	; 0x33
+ 55a:	1a aa       	std	Y+50, r1	; 0x32
+			}
+		
+		if ((isPressed(y,rightFront2)) && (isPressed(y,circle_right)))	
+ 55c:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 560:	82 72       	andi	r24, 0x22	; 34
+ 562:	82 32       	cpi	r24, 0x22	; 34
+ 564:	61 f4       	brne	.+24     	; 0x57e <__stack+0x11f>
+		{
+			if(pressed[26]==0)
+ 566:	8c a9       	ldd	r24, Y+52	; 0x34
+ 568:	9d a9       	ldd	r25, Y+53	; 0x35
+ 56a:	89 2b       	or	r24, r25
+ 56c:	51 f4       	brne	.+20     	; 0x582 <__stack+0x123>
+			{
+				USART_Transmitchar('1');
+ 56e:	81 e3       	ldi	r24, 0x31	; 49
+ 570:	e0 d1       	rcall	.+960    	; 0x932 <USART_Transmitchar>
+				pressed[26]++;
+ 572:	8c a9       	ldd	r24, Y+52	; 0x34
+ 574:	9d a9       	ldd	r25, Y+53	; 0x35
+ 576:	01 96       	adiw	r24, 0x01	; 1
+ 578:	9d ab       	std	Y+53, r25	; 0x35
+ 57a:	8c ab       	std	Y+52, r24	; 0x34
+ 57c:	02 c0       	rjmp	.+4      	; 0x582 <__stack+0x123>
+			}
+		}
+			else
+			{
+				pressed[26]=0;
+ 57e:	1d aa       	std	Y+53, r1	; 0x35
+ 580:	1c aa       	std	Y+52, r1	; 0x34
+			}
+		
+		if ((isPressed(y,rightFront2)) && (isPressed(y,cross_down)))	
+ 582:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 586:	82 74       	andi	r24, 0x42	; 66
+ 588:	82 34       	cpi	r24, 0x42	; 66
+ 58a:	61 f4       	brne	.+24     	; 0x5a4 <__stack+0x145>
+		{
+			if(pressed[27]==0)
+ 58c:	8e a9       	ldd	r24, Y+54	; 0x36
+ 58e:	9f a9       	ldd	r25, Y+55	; 0x37
+ 590:	89 2b       	or	r24, r25
+ 592:	51 f4       	brne	.+20     	; 0x5a8 <__stack+0x149>
+			{
+				USART_Transmitchar('2');
+ 594:	82 e3       	ldi	r24, 0x32	; 50
+ 596:	cd d1       	rcall	.+922    	; 0x932 <USART_Transmitchar>
+				pressed[27]++;
+ 598:	8e a9       	ldd	r24, Y+54	; 0x36
+ 59a:	9f a9       	ldd	r25, Y+55	; 0x37
+ 59c:	01 96       	adiw	r24, 0x01	; 1
+ 59e:	9f ab       	std	Y+55, r25	; 0x37
+ 5a0:	8e ab       	std	Y+54, r24	; 0x36
+ 5a2:	02 c0       	rjmp	.+4      	; 0x5a8 <__stack+0x149>
+			}
+		}
+			else
+			{
+				pressed[27]=0;
+ 5a4:	1f aa       	std	Y+55, r1	; 0x37
+ 5a6:	1e aa       	std	Y+54, r1	; 0x36
+			}
+		
+		if ((isPressed(y,rightFront2)) && (isPressed(y,square_left)))	
+ 5a8:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 5ac:	82 78       	andi	r24, 0x82	; 130
+ 5ae:	82 38       	cpi	r24, 0x82	; 130
+ 5b0:	61 f4       	brne	.+24     	; 0x5ca <__stack+0x16b>
+		{
+			if(pressed[28]==0)
+ 5b2:	88 ad       	ldd	r24, Y+56	; 0x38
+ 5b4:	99 ad       	ldd	r25, Y+57	; 0x39
+ 5b6:	89 2b       	or	r24, r25
+ 5b8:	51 f4       	brne	.+20     	; 0x5ce <__stack+0x16f>
+			{
+				USART_Transmitchar('3');
+ 5ba:	83 e3       	ldi	r24, 0x33	; 51
+ 5bc:	ba d1       	rcall	.+884    	; 0x932 <USART_Transmitchar>
+				pressed[28]++;
+ 5be:	88 ad       	ldd	r24, Y+56	; 0x38
+ 5c0:	99 ad       	ldd	r25, Y+57	; 0x39
+ 5c2:	01 96       	adiw	r24, 0x01	; 1
+ 5c4:	99 af       	std	Y+57, r25	; 0x39
+ 5c6:	88 af       	std	Y+56, r24	; 0x38
+ 5c8:	02 c0       	rjmp	.+4      	; 0x5ce <__stack+0x16f>
+			}
+		}
+			else
+			{
+				pressed[28]=0;
+ 5ca:	19 ae       	std	Y+57, r1	; 0x39
+ 5cc:	18 ae       	std	Y+56, r1	; 0x38
+			}
+		
+		if ((isPressed(y,rightFront2)) && (isPressed(x,up)))
+ 5ce:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 5d2:	81 ff       	sbrs	r24, 1
+ 5d4:	10 c0       	rjmp	.+32     	; 0x5f6 <__stack+0x197>
+ 5d6:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 5da:	84 ff       	sbrs	r24, 4
+ 5dc:	0c c0       	rjmp	.+24     	; 0x5f6 <__stack+0x197>
+		{
+			if(pressed[29]==0)
+ 5de:	8a ad       	ldd	r24, Y+58	; 0x3a
+ 5e0:	9b ad       	ldd	r25, Y+59	; 0x3b
+ 5e2:	89 2b       	or	r24, r25
+ 5e4:	71 f4       	brne	.+28     	; 0x602 <__stack+0x1a3>
+			{
+				USART_Transmitchar('4');
+ 5e6:	84 e3       	ldi	r24, 0x34	; 52
+ 5e8:	a4 d1       	rcall	.+840    	; 0x932 <USART_Transmitchar>
+				pressed[29]++;
+ 5ea:	8a ad       	ldd	r24, Y+58	; 0x3a
+ 5ec:	9b ad       	ldd	r25, Y+59	; 0x3b
+ 5ee:	01 96       	adiw	r24, 0x01	; 1
+ 5f0:	9b af       	std	Y+59, r25	; 0x3b
+ 5f2:	8a af       	std	Y+58, r24	; 0x3a
+ 5f4:	02 c0       	rjmp	.+4      	; 0x5fa <__stack+0x19b>
+			}
+		}
+			else
+			{
+				pressed[29]=0;
+ 5f6:	1b ae       	std	Y+59, r1	; 0x3b
+ 5f8:	1a ae       	std	Y+58, r1	; 0x3a
+			}
+		
+		if ((isPressed(y,rightFront2)) && (isPressed(x,down)))
+ 5fa:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 5fe:	81 ff       	sbrs	r24, 1
+ 600:	10 c0       	rjmp	.+32     	; 0x622 <__stack+0x1c3>
+ 602:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 606:	86 ff       	sbrs	r24, 6
+ 608:	0c c0       	rjmp	.+24     	; 0x622 <__stack+0x1c3>
+		{
+			if(pressed[30]==0)
+ 60a:	8c ad       	ldd	r24, Y+60	; 0x3c
+ 60c:	9d ad       	ldd	r25, Y+61	; 0x3d
+ 60e:	89 2b       	or	r24, r25
+ 610:	71 f4       	brne	.+28     	; 0x62e <__stack+0x1cf>
+			{
+				USART_Transmitchar('5');
+ 612:	85 e3       	ldi	r24, 0x35	; 53
+ 614:	8e d1       	rcall	.+796    	; 0x932 <USART_Transmitchar>
+				pressed[30]++;
+ 616:	8c ad       	ldd	r24, Y+60	; 0x3c
+ 618:	9d ad       	ldd	r25, Y+61	; 0x3d
+ 61a:	01 96       	adiw	r24, 0x01	; 1
+ 61c:	9d af       	std	Y+61, r25	; 0x3d
+ 61e:	8c af       	std	Y+60, r24	; 0x3c
+ 620:	02 c0       	rjmp	.+4      	; 0x626 <__stack+0x1c7>
+			}
+		}
+			else
+			{
+				pressed[30]=0;
+ 622:	1d ae       	std	Y+61, r1	; 0x3d
+ 624:	1c ae       	std	Y+60, r1	; 0x3c
+			}
+			
+		if ((isPressed(y,rightFront2))&&(isPressed(x,right)))
+ 626:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 62a:	81 ff       	sbrs	r24, 1
+ 62c:	12 c0       	rjmp	.+36     	; 0x652 <__stack+0x1f3>
+ 62e:	80 91 db 00 	lds	r24, 0x00DB	; 0x8000db <x>
+ 632:	85 ff       	sbrs	r24, 5
+ 634:	0e c0       	rjmp	.+28     	; 0x652 <__stack+0x1f3>
+		{
+			if(pressed[36]==0)
+ 636:	f5 01       	movw	r30, r10
+ 638:	80 81       	ld	r24, Z
+ 63a:	91 81       	ldd	r25, Z+1	; 0x01
+ 63c:	89 2b       	or	r24, r25
+ 63e:	61 f4       	brne	.+24     	; 0x658 <__stack+0x1f9>
+			{
+				USART_Transmitchar('T');
+ 640:	84 e5       	ldi	r24, 0x54	; 84
+ 642:	77 d1       	rcall	.+750    	; 0x932 <USART_Transmitchar>
+				pressed[35]++;
+ 644:	f4 01       	movw	r30, r8
+ 646:	80 81       	ld	r24, Z
+ 648:	91 81       	ldd	r25, Z+1	; 0x01
+ 64a:	01 96       	adiw	r24, 0x01	; 1
+ 64c:	91 83       	std	Z+1, r25	; 0x01
+ 64e:	80 83       	st	Z, r24
+ 650:	03 c0       	rjmp	.+6      	; 0x658 <__stack+0x1f9>
+			}
+		}
+			else
+			{
+				pressed[35]=0;
+ 652:	f4 01       	movw	r30, r8
+ 654:	11 82       	std	Z+1, r1	; 0x01
+ 656:	10 82       	st	Z, r1
+			}
+
+							//-------------------------------------------------------CAMERA----------------------------------------------------------------//
+		
+		
+		if((isPressed(y,leftFront2))&&(isPressed(y,triangle_up)))
+ 658:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 65c:	80 ff       	sbrs	r24, 0
+ 65e:	0e c0       	rjmp	.+28     	; 0x67c <__stack+0x21d>
+ 660:	84 ff       	sbrs	r24, 4
+ 662:	0c c0       	rjmp	.+24     	; 0x67c <__stack+0x21d>
+		{
+			if(pressed[31]==0)
+ 664:	2e ad       	ldd	r18, Y+62	; 0x3e
+ 666:	3f ad       	ldd	r19, Y+63	; 0x3f
+ 668:	23 2b       	or	r18, r19
+ 66a:	71 f4       	brne	.+28     	; 0x688 <__stack+0x229>
+			{
+				USART_Transmitchar('6');
+ 66c:	86 e3       	ldi	r24, 0x36	; 54
+ 66e:	61 d1       	rcall	.+706    	; 0x932 <USART_Transmitchar>
+				pressed[31]++;
+ 670:	8e ad       	ldd	r24, Y+62	; 0x3e
+ 672:	9f ad       	ldd	r25, Y+63	; 0x3f
+ 674:	01 96       	adiw	r24, 0x01	; 1
+ 676:	9f af       	std	Y+63, r25	; 0x3f
+ 678:	8e af       	std	Y+62, r24	; 0x3e
+ 67a:	02 c0       	rjmp	.+4      	; 0x680 <__stack+0x221>
+			}
+		}
+			else
+			{
+				pressed[31]=0;
+ 67c:	1f ae       	std	Y+63, r1	; 0x3f
+ 67e:	1e ae       	std	Y+62, r1	; 0x3e
+			}
+		
+		if((isPressed(y,leftFront2))&&(isPressed(y,cross_down)))
+ 680:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 684:	80 ff       	sbrs	r24, 0
+ 686:	10 c0       	rjmp	.+32     	; 0x6a8 <__stack+0x249>
+ 688:	86 ff       	sbrs	r24, 6
+ 68a:	0e c0       	rjmp	.+28     	; 0x6a8 <__stack+0x249>
+		{
+			if(pressed[32]==0)
+ 68c:	f8 01       	movw	r30, r16
+ 68e:	80 81       	ld	r24, Z
+ 690:	91 81       	ldd	r25, Z+1	; 0x01
+ 692:	89 2b       	or	r24, r25
+ 694:	e1 f5       	brne	.+120    	; 0x70e <__stack+0x2af>
+			{
+				USART_Transmitchar('7');
+ 696:	87 e3       	ldi	r24, 0x37	; 55
+ 698:	4c d1       	rcall	.+664    	; 0x932 <USART_Transmitchar>
+				pressed[32]++;
+ 69a:	f8 01       	movw	r30, r16
+ 69c:	80 81       	ld	r24, Z
+ 69e:	91 81       	ldd	r25, Z+1	; 0x01
+ 6a0:	01 96       	adiw	r24, 0x01	; 1
+ 6a2:	91 83       	std	Z+1, r25	; 0x01
+ 6a4:	80 83       	st	Z, r24
+ 6a6:	03 c0       	rjmp	.+6      	; 0x6ae <__stack+0x24f>
+			}
+		}
+			else
+			{
+				pressed[32]=0;
+ 6a8:	f8 01       	movw	r30, r16
+ 6aa:	11 82       	std	Z+1, r1	; 0x01
+ 6ac:	10 82       	st	Z, r1
+			}
+		
+		if((isPressed(y,leftFront2))&&(isPressed(y,circle_right)))
+ 6ae:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 6b2:	80 ff       	sbrs	r24, 0
+ 6b4:	10 c0       	rjmp	.+32     	; 0x6d6 <__stack+0x277>
+ 6b6:	85 ff       	sbrs	r24, 5
+ 6b8:	0e c0       	rjmp	.+28     	; 0x6d6 <__stack+0x277>
+		{
+			if(pressed[33]==0)
+ 6ba:	f7 01       	movw	r30, r14
+ 6bc:	80 81       	ld	r24, Z
+ 6be:	91 81       	ldd	r25, Z+1	; 0x01
+ 6c0:	89 2b       	or	r24, r25
+ 6c2:	41 f5       	brne	.+80     	; 0x714 <__stack+0x2b5>
+			{
+				USART_Transmitchar('8');
+ 6c4:	88 e3       	ldi	r24, 0x38	; 56
+ 6c6:	35 d1       	rcall	.+618    	; 0x932 <USART_Transmitchar>
+				pressed[33]++;
+ 6c8:	f7 01       	movw	r30, r14
+ 6ca:	80 81       	ld	r24, Z
+ 6cc:	91 81       	ldd	r25, Z+1	; 0x01
+ 6ce:	01 96       	adiw	r24, 0x01	; 1
+ 6d0:	91 83       	std	Z+1, r25	; 0x01
+ 6d2:	80 83       	st	Z, r24
+ 6d4:	03 c0       	rjmp	.+6      	; 0x6dc <__stack+0x27d>
+			}
+		}
+			else
+			{
+				pressed[33]=0;
+ 6d6:	f7 01       	movw	r30, r14
+ 6d8:	11 82       	std	Z+1, r1	; 0x01
+ 6da:	10 82       	st	Z, r1
+			}
+		
+		if((isPressed(y,leftFront2))&&(isPressed(y,square_left)))
+ 6dc:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 6e0:	80 ff       	sbrs	r24, 0
+ 6e2:	11 c0       	rjmp	.+34     	; 0x706 <__stack+0x2a7>
+ 6e4:	88 23       	and	r24, r24
+ 6e6:	7c f4       	brge	.+30     	; 0x706 <__stack+0x2a7>
+		{
+			if(pressed[34]==0)
+ 6e8:	f6 01       	movw	r30, r12
+ 6ea:	80 81       	ld	r24, Z
+ 6ec:	91 81       	ldd	r25, Z+1	; 0x01
+ 6ee:	89 2b       	or	r24, r25
+ 6f0:	09 f0       	breq	.+2      	; 0x6f4 <__stack+0x295>
+ 6f2:	fb cc       	rjmp	.-1546   	; 0xea <main+0x56>
+			{
+				USART_Transmitchar('9');
+ 6f4:	89 e3       	ldi	r24, 0x39	; 57
+ 6f6:	1d d1       	rcall	.+570    	; 0x932 <USART_Transmitchar>
+				pressed[34]++;
+ 6f8:	f6 01       	movw	r30, r12
+ 6fa:	80 81       	ld	r24, Z
+ 6fc:	91 81       	ldd	r25, Z+1	; 0x01
+ 6fe:	01 96       	adiw	r24, 0x01	; 1
+ 700:	91 83       	std	Z+1, r25	; 0x01
+ 702:	80 83       	st	Z, r24
+ 704:	f2 cc       	rjmp	.-1564   	; 0xea <main+0x56>
+			}
+		}
+			else
+			{
+				pressed[34]=0;
+ 706:	f6 01       	movw	r30, r12
+ 708:	11 82       	std	Z+1, r1	; 0x01
+ 70a:	10 82       	st	Z, r1
+ 70c:	ee cc       	rjmp	.-1572   	; 0xea <main+0x56>
+			else
+			{
+				pressed[32]=0;
+			}
+		
+		if((isPressed(y,leftFront2))&&(isPressed(y,circle_right)))
+ 70e:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 712:	d1 cf       	rjmp	.-94     	; 0x6b6 <__stack+0x257>
+			else
+			{
+				pressed[33]=0;
+			}
+		
+		if((isPressed(y,leftFront2))&&(isPressed(y,square_left)))
+ 714:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <y>
+ 718:	e5 cf       	rjmp	.-54     	; 0x6e4 <__stack+0x285>
+
+0000071a <SPI_send>:
+
+
+char SPI_send(char send_x)
+{
+	
+	SPDR= send_x;
+ 71a:	8f b9       	out	0x0f, r24	; 15
+	while(!(SPSR & _BV(SPIF)))
+ 71c:	77 9b       	sbis	0x0e, 7	; 14
+ 71e:	fe cf       	rjmp	.-4      	; 0x71c <SPI_send+0x2>
+ 720:	80 e5       	ldi	r24, 0x50	; 80
+ 722:	8a 95       	dec	r24
+ 724:	f1 f7       	brne	.-4      	; 0x722 <SPI_send+0x8>
+	{
+		;
+	}		
+	_delay_us(30);
+	send_x= SPDR;
+ 726:	8f b1       	in	r24, 0x0f	; 15
+
+	return(send_x);
+}
+ 728:	08 95       	ret
+
+0000072a <SPI_send_array>:
+
+void SPI_send_array(char *a, char cmd_length)
+{
+ 72a:	cf 92       	push	r12
+ 72c:	df 92       	push	r13
+ 72e:	ef 92       	push	r14
+ 730:	ff 92       	push	r15
+ 732:	0f 93       	push	r16
+ 734:	1f 93       	push	r17
+ 736:	cf 93       	push	r28
+ 738:	df 93       	push	r29
+//	    USART_TransmitString("In SPI send");
+//	    NewLine();
+	int spi_send_array_i;
+	for(spi_send_array_i=0; spi_send_array_i<cmd_length; spi_send_array_i++)
+ 73a:	66 23       	and	r22, r22
+ 73c:	89 f0       	breq	.+34     	; 0x760 <SPI_send_array+0x36>
+ 73e:	7c 01       	movw	r14, r24
+ 740:	6c 01       	movw	r12, r24
+ 742:	c6 0e       	add	r12, r22
+ 744:	d1 1c       	adc	r13, r1
+ 746:	ec 01       	movw	r28, r24
+ 748:	8e 01       	movw	r16, r28
+ 74a:	0e 19       	sub	r16, r14
+ 74c:	1f 09       	sbc	r17, r15
+	{
+		data_array[spi_send_array_i]= SPI_send(*a);
+ 74e:	89 91       	ld	r24, Y+
+ 750:	e4 df       	rcall	.-56     	; 0x71a <SPI_send>
+ 752:	f8 01       	movw	r30, r16
+ 754:	e6 51       	subi	r30, 0x16	; 22
+ 756:	ff 4f       	sbci	r31, 0xFF	; 255
+ 758:	80 83       	st	Z, r24
+void SPI_send_array(char *a, char cmd_length)
+{
+//	    USART_TransmitString("In SPI send");
+//	    NewLine();
+	int spi_send_array_i;
+	for(spi_send_array_i=0; spi_send_array_i<cmd_length; spi_send_array_i++)
+ 75a:	cc 15       	cp	r28, r12
+ 75c:	dd 05       	cpc	r29, r13
+ 75e:	a1 f7       	brne	.-24     	; 0x748 <SPI_send_array+0x1e>
+		data_array[spi_send_array_i]= SPI_send(*a);
+		a++;
+	}
+//	    USART_TransmitString("after spi send");
+//	    NewLine();
+}
+ 760:	df 91       	pop	r29
+ 762:	cf 91       	pop	r28
+ 764:	1f 91       	pop	r17
+ 766:	0f 91       	pop	r16
+ 768:	ff 90       	pop	r15
+ 76a:	ef 90       	pop	r14
+ 76c:	df 90       	pop	r13
+ 76e:	cf 90       	pop	r12
+ 770:	08 95       	ret
+
+00000772 <init_PS2>:
+//#include "initialize.c"
+
+
+
+void init_PS2()
+{
+ 772:	cf 93       	push	r28
+ 774:	df 93       	push	r29
+ 776:	cd b7       	in	r28, 0x3d	; 61
+ 778:	de b7       	in	r29, 0x3e	; 62
+ 77a:	ab 97       	sbiw	r28, 0x2b	; 43
+ 77c:	0f b6       	in	r0, 0x3f	; 63
+ 77e:	f8 94       	cli
+ 780:	de bf       	out	0x3e, r29	; 62
+ 782:	0f be       	out	0x3f, r0	; 63
+ 784:	cd bf       	out	0x3d, r28	; 61
+
+//    USART_TransmitString("In ps2 init");
+//    NewLine();
+	// All pins o/p except MISO, Pull up enabled on MISO
+	SPI_DDR |= (_BV(MOSI_PIN)) | _BV(SCK_PIN) | _BV(SS_PIN);
+ 786:	87 b3       	in	r24, 0x17	; 23
+ 788:	8c 62       	ori	r24, 0x2C	; 44
+ 78a:	87 bb       	out	0x17, r24	; 23
+	SPI_DDR &= ~(_BV(MISO_PIN));
+ 78c:	bc 98       	cbi	0x17, 4	; 23
+	SPI_PORT |= _BV(MISO_PIN);
+ 78e:	c4 9a       	sbi	0x18, 4	; 24
+	// SPI interrupt disabled, SPI enable, will be enabled after initialization
+	// LSB first, Master Mode,
+	// First edge of Clock- Falling
+	// Sample on Trailling Edge
+	// Clock Frequency 500kHz for 8MHZ crystal
+	SPCR= 0b01111101;
+ 790:	8d e7       	ldi	r24, 0x7D	; 125
+ 792:	8d b9       	out	0x0d, r24	; 13
+
+// PS2 initiallization
+	char  PS2_CONFIGMODE[5]= {0x01, 0x43, 0x00, 0x01, 0x00};
+ 794:	85 e0       	ldi	r24, 0x05	; 5
+ 796:	e0 e6       	ldi	r30, 0x60	; 96
+ 798:	f0 e0       	ldi	r31, 0x00	; 0
+ 79a:	de 01       	movw	r26, r28
+ 79c:	11 96       	adiw	r26, 0x01	; 1
+ 79e:	01 90       	ld	r0, Z+
+ 7a0:	0d 92       	st	X+, r0
+ 7a2:	8a 95       	dec	r24
+ 7a4:	e1 f7       	brne	.-8      	; 0x79e <init_PS2+0x2c>
+	//char  PS2_ANALOGMODE[9]= {0x01, 0x44, 0x00, 0x01, 0x03, 0x00, 0x00, 0x00, 0x00};
+	char  PS2_ANALOGMODE[9]= {0x01, 0x44, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00};	
+ 7a6:	89 e0       	ldi	r24, 0x09	; 9
+ 7a8:	e5 e6       	ldi	r30, 0x65	; 101
+ 7aa:	f0 e0       	ldi	r31, 0x00	; 0
+ 7ac:	de 01       	movw	r26, r28
+ 7ae:	16 96       	adiw	r26, 0x06	; 6
+ 7b0:	01 90       	ld	r0, Z+
+ 7b2:	0d 92       	st	X+, r0
+ 7b4:	8a 95       	dec	r24
+ 7b6:	e1 f7       	brne	.-8      	; 0x7b0 <init_PS2+0x3e>
+	char  PS2_SETUPMOTOR[9]= {0x01, 0x4D, 0x00, 0x00, 0x01, 0xff, 0xff, 0xff, 0xff};
+ 7b8:	89 e0       	ldi	r24, 0x09	; 9
+ 7ba:	ee e6       	ldi	r30, 0x6E	; 110
+ 7bc:	f0 e0       	ldi	r31, 0x00	; 0
+ 7be:	de 01       	movw	r26, r28
+ 7c0:	1f 96       	adiw	r26, 0x0f	; 15
+ 7c2:	01 90       	ld	r0, Z+
+ 7c4:	0d 92       	st	X+, r0
+ 7c6:	8a 95       	dec	r24
+ 7c8:	e1 f7       	brne	.-8      	; 0x7c2 <init_PS2+0x50>
+//	char  PS2_RETURNPRES[9]= {0x01, 0x4f, 0x00, 0xFF, 0xFF, 0x03, 0x00, 0x00, 0x00};
+	char  PS2_EXITCONFIG[9]= {0x01, 0x43, 0x00, 0x00, 0x5a, 0x5a, 0x5a, 0x5a, 0x5a};
+ 7ca:	89 e0       	ldi	r24, 0x09	; 9
+ 7cc:	e7 e7       	ldi	r30, 0x77	; 119
+ 7ce:	f0 e0       	ldi	r31, 0x00	; 0
+ 7d0:	de 01       	movw	r26, r28
+ 7d2:	58 96       	adiw	r26, 0x18	; 24
+ 7d4:	01 90       	ld	r0, Z+
+ 7d6:	0d 92       	st	X+, r0
+ 7d8:	8a 95       	dec	r24
+ 7da:	e1 f7       	brne	.-8      	; 0x7d4 <init_PS2+0x62>
+//    USART_TransmitString("Before config mode");
+//    NewLine();
+// Enter Config mode
+	SPI_PORT &= ~(_BV(SS_PIN));	//ATT held low	
+ 7dc:	c2 98       	cbi	0x18, 2	; 24
+	a=0;
+ 7de:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <a>
+	b=0;
+ 7e2:	10 92 da 00 	sts	0x00DA, r1	; 0x8000da <b>
+	c=0;
+ 7e6:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <c>
+	SPI_send_array(PS2_CONFIGMODE,5);		
+ 7ea:	65 e0       	ldi	r22, 0x05	; 5
+ 7ec:	ce 01       	movw	r24, r28
+ 7ee:	01 96       	adiw	r24, 0x01	; 1
+ 7f0:	9c df       	rcall	.-200    	; 0x72a <SPI_send_array>
+	SPI_PORT |= _BV(SS_PIN);	// Driving Attention Low
+ 7f2:	c2 9a       	sbi	0x18, 2	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 7f4:	8f ec       	ldi	r24, 0xCF	; 207
+ 7f6:	97 e0       	ldi	r25, 0x07	; 7
+ 7f8:	01 97       	sbiw	r24, 0x01	; 1
+ 7fa:	f1 f7       	brne	.-4      	; 0x7f8 <init_PS2+0x86>
+ 7fc:	00 c0       	rjmp	.+0      	; 0x7fe <init_PS2+0x8c>
+ 7fe:	00 00       	nop
+ 800:	8f ec       	ldi	r24, 0xCF	; 207
+ 802:	97 e0       	ldi	r25, 0x07	; 7
+ 804:	01 97       	sbiw	r24, 0x01	; 1
+ 806:	f1 f7       	brne	.-4      	; 0x804 <init_PS2+0x92>
+ 808:	00 c0       	rjmp	.+0      	; 0x80a <init_PS2+0x98>
+ 80a:	00 00       	nop
+
+	_delay_ms(1);
+//    USART_TransmitString("After Config mode");
+//    NewLine();
+// Enter Analog Mode
+	SPI_PORT &= ~(_BV(SS_PIN));	//ATT held low	
+ 80c:	c2 98       	cbi	0x18, 2	; 24
+	a=0;
+ 80e:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <a>
+	b=0;
+ 812:	10 92 da 00 	sts	0x00DA, r1	; 0x8000da <b>
+	c=0;
+ 816:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <c>
+	SPI_send_array(PS2_ANALOGMODE,9);		
+ 81a:	69 e0       	ldi	r22, 0x09	; 9
+ 81c:	ce 01       	movw	r24, r28
+ 81e:	06 96       	adiw	r24, 0x06	; 6
+ 820:	84 df       	rcall	.-248    	; 0x72a <SPI_send_array>
+	SPI_PORT |= _BV(SS_PIN);	// Driving Attention Low
+ 822:	c2 9a       	sbi	0x18, 2	; 24
+ 824:	8f ec       	ldi	r24, 0xCF	; 207
+ 826:	97 e0       	ldi	r25, 0x07	; 7
+ 828:	01 97       	sbiw	r24, 0x01	; 1
+ 82a:	f1 f7       	brne	.-4      	; 0x828 <init_PS2+0xb6>
+ 82c:	00 c0       	rjmp	.+0      	; 0x82e <init_PS2+0xbc>
+ 82e:	00 00       	nop
+ 830:	8f ec       	ldi	r24, 0xCF	; 207
+ 832:	97 e0       	ldi	r25, 0x07	; 7
+ 834:	01 97       	sbiw	r24, 0x01	; 1
+ 836:	f1 f7       	brne	.-4      	; 0x834 <init_PS2+0xc2>
+ 838:	00 c0       	rjmp	.+0      	; 0x83a <init_PS2+0xc8>
+ 83a:	00 00       	nop
+//    NewLine();
+	_delay_ms(1);
+//    USART_TransmitString("Before setup motor mode");
+//    NewLine();
+// Setup Motor
+	SPI_PORT &= ~(_BV(SS_PIN));	//ATT held low	
+ 83c:	c2 98       	cbi	0x18, 2	; 24
+	a=0;
+ 83e:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <a>
+	b=0;
+ 842:	10 92 da 00 	sts	0x00DA, r1	; 0x8000da <b>
+	c=0;
+ 846:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <c>
+	SPI_send_array(PS2_SETUPMOTOR,9);		
+ 84a:	69 e0       	ldi	r22, 0x09	; 9
+ 84c:	ce 01       	movw	r24, r28
+ 84e:	0f 96       	adiw	r24, 0x0f	; 15
+ 850:	6c df       	rcall	.-296    	; 0x72a <SPI_send_array>
+	SPI_PORT |= _BV(SS_PIN);	// Driving Attention Low
+ 852:	c2 9a       	sbi	0x18, 2	; 24
+ 854:	8f ec       	ldi	r24, 0xCF	; 207
+ 856:	97 e0       	ldi	r25, 0x07	; 7
+ 858:	01 97       	sbiw	r24, 0x01	; 1
+ 85a:	f1 f7       	brne	.-4      	; 0x858 <init_PS2+0xe6>
+ 85c:	00 c0       	rjmp	.+0      	; 0x85e <init_PS2+0xec>
+ 85e:	00 00       	nop
+ 860:	8f ec       	ldi	r24, 0xCF	; 207
+ 862:	97 e0       	ldi	r25, 0x07	; 7
+ 864:	01 97       	sbiw	r24, 0x01	; 1
+ 866:	f1 f7       	brne	.-4      	; 0x864 <init_PS2+0xf2>
+ 868:	00 c0       	rjmp	.+0      	; 0x86a <init_PS2+0xf8>
+ 86a:	00 00       	nop
+//	    USART_TransmitString("After motor setup");
+//	    NewLine();
+//		    USART_TransmitString("before exit config mode");
+//		    NewLine();
+// Exit Config
+	SPI_PORT &= ~(_BV(SS_PIN));	//ATT held low	
+ 86c:	c2 98       	cbi	0x18, 2	; 24
+	a=0;
+ 86e:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <a>
+	b=0;
+ 872:	10 92 da 00 	sts	0x00DA, r1	; 0x8000da <b>
+	c=0;
+ 876:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <c>
+	SPI_send_array(PS2_EXITCONFIG,9);
+ 87a:	69 e0       	ldi	r22, 0x09	; 9
+ 87c:	ce 01       	movw	r24, r28
+ 87e:	48 96       	adiw	r24, 0x18	; 24
+ 880:	54 df       	rcall	.-344    	; 0x72a <SPI_send_array>
+	SPI_PORT |= _BV(SS_PIN);	// Driving Attention Low
+ 882:	c2 9a       	sbi	0x18, 2	; 24
+ 884:	8f ec       	ldi	r24, 0xCF	; 207
+ 886:	97 e0       	ldi	r25, 0x07	; 7
+ 888:	01 97       	sbiw	r24, 0x01	; 1
+ 88a:	f1 f7       	brne	.-4      	; 0x888 <init_PS2+0x116>
+ 88c:	00 c0       	rjmp	.+0      	; 0x88e <init_PS2+0x11c>
+ 88e:	00 00       	nop
+ 890:	8f ec       	ldi	r24, 0xCF	; 207
+ 892:	97 e0       	ldi	r25, 0x07	; 7
+ 894:	01 97       	sbiw	r24, 0x01	; 1
+ 896:	f1 f7       	brne	.-4      	; 0x894 <init_PS2+0x122>
+ 898:	00 c0       	rjmp	.+0      	; 0x89a <init_PS2+0x128>
+ 89a:	00 00       	nop
+	_delay_ms(1);
+//	    USART_TransmitString("After exit config mode");
+//	    NewLine();
+
+// Enter values in PS2_POLLBUTTON
+	volatile char ps2_init_array[9]= {0x01, 0x42, 0x00, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00};
+ 89c:	89 e0       	ldi	r24, 0x09	; 9
+ 89e:	e0 e8       	ldi	r30, 0x80	; 128
+ 8a0:	f0 e0       	ldi	r31, 0x00	; 0
+ 8a2:	de 01       	movw	r26, r28
+ 8a4:	91 96       	adiw	r26, 0x21	; 33
+ 8a6:	01 90       	ld	r0, Z+
+ 8a8:	0d 92       	st	X+, r0
+ 8aa:	8a 95       	dec	r24
+ 8ac:	e1 f7       	brne	.-8      	; 0x8a6 <init_PS2+0x134>
+	volatile int ps2_init_i;
+	for(ps2_init_i=0; ps2_init_i<10; ps2_init_i++)
+ 8ae:	1b a6       	std	Y+43, r1	; 0x2b
+ 8b0:	1a a6       	std	Y+42, r1	; 0x2a
+ 8b2:	8a a5       	ldd	r24, Y+42	; 0x2a
+ 8b4:	9b a5       	ldd	r25, Y+43	; 0x2b
+ 8b6:	0a 97       	sbiw	r24, 0x0a	; 10
+ 8b8:	bc f4       	brge	.+46     	; 0x8e8 <init_PS2+0x176>
+	{
+		PS2_POLLBUTTON[ps2_init_i] = ps2_init_array[ps2_init_i];
+ 8ba:	ea a5       	ldd	r30, Y+42	; 0x2a
+ 8bc:	fb a5       	ldd	r31, Y+43	; 0x2b
+ 8be:	aa a5       	ldd	r26, Y+42	; 0x2a
+ 8c0:	bb a5       	ldd	r27, Y+43	; 0x2b
+ 8c2:	81 e2       	ldi	r24, 0x21	; 33
+ 8c4:	90 e0       	ldi	r25, 0x00	; 0
+ 8c6:	8c 0f       	add	r24, r28
+ 8c8:	9d 1f       	adc	r25, r29
+ 8ca:	a8 0f       	add	r26, r24
+ 8cc:	b9 1f       	adc	r27, r25
+ 8ce:	8c 91       	ld	r24, X
+ 8d0:	ef 51       	subi	r30, 0x1F	; 31
+ 8d2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 8d4:	80 83       	st	Z, r24
+//	    NewLine();
+
+// Enter values in PS2_POLLBUTTON
+	volatile char ps2_init_array[9]= {0x01, 0x42, 0x00, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00};
+	volatile int ps2_init_i;
+	for(ps2_init_i=0; ps2_init_i<10; ps2_init_i++)
+ 8d6:	8a a5       	ldd	r24, Y+42	; 0x2a
+ 8d8:	9b a5       	ldd	r25, Y+43	; 0x2b
+ 8da:	01 96       	adiw	r24, 0x01	; 1
+ 8dc:	9b a7       	std	Y+43, r25	; 0x2b
+ 8de:	8a a7       	std	Y+42, r24	; 0x2a
+ 8e0:	8a a5       	ldd	r24, Y+42	; 0x2a
+ 8e2:	9b a5       	ldd	r25, Y+43	; 0x2b
+ 8e4:	0a 97       	sbiw	r24, 0x0a	; 10
+ 8e6:	4c f3       	brlt	.-46     	; 0x8ba <init_PS2+0x148>
+	{
+		PS2_POLLBUTTON[ps2_init_i] = ps2_init_array[ps2_init_i];
+	}
+}
+ 8e8:	ab 96       	adiw	r28, 0x2b	; 43
+ 8ea:	0f b6       	in	r0, 0x3f	; 63
+ 8ec:	f8 94       	cli
+ 8ee:	de bf       	out	0x3e, r29	; 62
+ 8f0:	0f be       	out	0x3f, r0	; 63
+ 8f2:	cd bf       	out	0x3d, r28	; 61
+ 8f4:	df 91       	pop	r29
+ 8f6:	cf 91       	pop	r28
+ 8f8:	08 95       	ret
+
+000008fa <scan_PS2>:
+
+void scan_PS2()
+{ 
+//	    USART_TransmitString("before scan PS2");
+//	    NewLine();
+	SPI_PORT &= ~(_BV(SS_PIN));	//ATT held low	
+ 8fa:	c2 98       	cbi	0x18, 2	; 24
+	a=0;	
+ 8fc:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <a>
+        b=0;
+ 900:	10 92 da 00 	sts	0x00DA, r1	; 0x8000da <b>
+	c=0;
+ 904:	10 92 01 01 	sts	0x0101, r1	; 0x800101 <c>
+	SPI_send_array(PS2_POLLBUTTON,9);
+ 908:	69 e0       	ldi	r22, 0x09	; 9
+ 90a:	81 ee       	ldi	r24, 0xE1	; 225
+ 90c:	90 e0       	ldi	r25, 0x00	; 0
+ 90e:	0d df       	rcall	.-486    	; 0x72a <SPI_send_array>
+	SPI_PORT |= _BV(SS_PIN);	// Driving Attention Low
+ 910:	c2 9a       	sbi	0x18, 2	; 24
+ 912:	8f e9       	ldi	r24, 0x9F	; 159
+ 914:	9f e0       	ldi	r25, 0x0F	; 15
+ 916:	01 97       	sbiw	r24, 0x01	; 1
+ 918:	f1 f7       	brne	.-4      	; 0x916 <scan_PS2+0x1c>
+ 91a:	00 c0       	rjmp	.+0      	; 0x91c <scan_PS2+0x22>
+ 91c:	00 00       	nop
+ 91e:	08 95       	ret
+
+00000920 <USART_Init>:
+void USART_Init( unsigned int baud )
+{
+	/* Set baud rate */
+	//unsigned int num;
+	//num=((F_CPU)/(16*baud))-1;
+	UBRRH = (unsigned char)(baud>>8);
+ 920:	90 bd       	out	0x20, r25	; 32
+	UBRRL = (unsigned char)baud;
+ 922:	89 b9       	out	0x09, r24	; 9
+	/* Enable receiver and transmitter */
+	UCSRB = (1<<RXEN)|(1<<TXEN); //|(1<<RXCIE);
+ 924:	88 e1       	ldi	r24, 0x18	; 24
+ 926:	8a b9       	out	0x0a, r24	; 10
+	/* Set frame format: 8data, 2stop bit */
+	UCSRC = (1<<URSEL)|(1<<USBS)|(3<<UCSZ0);
+ 928:	8e e8       	ldi	r24, 0x8E	; 142
+ 92a:	80 bd       	out	0x20, r24	; 32
+ 92c:	08 95       	ret
+
+0000092e <USART_InterruptEnable>:
+}
+
+void USART_InterruptEnable()
+{
+	UCSRB|=(1<<RXCIE);
+ 92e:	57 9a       	sbi	0x0a, 7	; 10
+ 930:	08 95       	ret
+
+00000932 <USART_Transmitchar>:
+}
+
+void USART_Transmitchar( unsigned char data )
+{
+	/* Wait for empty transmit buffer */
+	while ( !( UCSRA & (1<<UDRE)) )
+ 932:	5d 9b       	sbis	0x0b, 5	; 11
+ 934:	fe cf       	rjmp	.-4      	; 0x932 <USART_Transmitchar>
+	;
+	/* Put data into buffer, sends the data */
+	UDR = data;
+ 936:	8c b9       	out	0x0c, r24	; 12
+ 938:	08 95       	ret
+
+0000093a <_exit>:
+ 93a:	f8 94       	cli
+
+0000093c <__stop_program>:
+ 93c:	ff cf       	rjmp	.-2      	; 0x93c <__stop_program>
